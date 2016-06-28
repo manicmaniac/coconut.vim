@@ -100,6 +100,9 @@ syn match   coconutArrow	"->" display
 " Partial applications
 syn match   coconutPartial	"\$" display
 
+" Placeholder
+syn match   coconutPlaceholder	/\<_\>/ display
+
 " The zero-length non-grouping match before the function name is
 " extremely important in coconutFunction.  Without it, everything is
 " interpreted as a function inside the contained environment of
@@ -296,6 +299,7 @@ if version >= 508 || !exists("did_coconut_syn_inits")
   HiLink coconutChain		Operator
   HiLink coconutArrow		Operator
   HiLink coconutPartial		Operator
+  HiLink coconutPlaceholder		Special
   HiLink coconutFunction		Function
   HiLink coconutComment		Comment
   HiLink coconutTodo		Todo
