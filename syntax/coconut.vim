@@ -75,8 +75,8 @@ set cpo&vim
 syn keyword coconutStatement	False, None, True
 syn keyword coconutStatement	as assert break continue del exec global
 syn keyword coconutStatement	lambda nonlocal pass print return with yield
-syn keyword coconutStatement	class data def nextgroup=coconutFunction skipwhite
-syn keyword coconutConditional	elif else if match case
+syn keyword coconutStatement	class def nextgroup=coconutFunction skipwhite
+syn keyword coconutConditional	elif else if
 syn keyword coconutRepeat	for while
 syn keyword coconutOperator	and in is not or
 syn keyword coconutException	except finally raise try
@@ -103,13 +103,19 @@ syn match   coconutPartial	"\$" display
 " Placeholder
 syn match   coconutPlaceholder	/\<_\>/ display
 
+" Code Paththrough
+syn match   coconutCodePaththrough	/\\\\\w\+/ display
+
 " The zero-length non-grouping match before the function name is
 " extremely important in coconutFunction.  Without it, everything is
 " interpreted as a function inside the contained environment of
 " doctests.
 " A dot must be allowed because of @MyClass.myfunc decorators.
 syn match   coconutFunction
-      \ "\%(\%(data\s\|def\s\|class\s\|@\)\s*\)\@<=\h\%(\w\|\.\)*" contained
+      \ "\%(\%(def\s\|class\s\|@\)\s*\)\@<=\h\%(\w\|\.\)*" contained
+
+syn match   coconutEscapableStatement	/\\\@<!\(data\|async\|await\)\>/
+syn match   coconutEscapableConditional	/\\\@<!\(match\|case\)\>/
 
 syn match   coconutComment	"#.*$" contains=coconutTodo,@Spell
 syn keyword coconutTodo		FIXME NOTE NOTES TODO XXX contained
@@ -299,8 +305,11 @@ if version >= 508 || !exists("did_coconut_syn_inits")
   HiLink coconutChain		Operator
   HiLink coconutArrow		Operator
   HiLink coconutPartial		Operator
-  HiLink coconutPlaceholder		Special
+  HiLink coconutPlaceholder		SpecialChar
+  HiLink coconutCodePaththrough	Macro
   HiLink coconutFunction		Function
+  HiLink coconutEscapableStatement		Statement
+  HiLink coconutEscapableConditional		Conditional
   HiLink coconutComment		Comment
   HiLink coconutTodo		Todo
   HiLink coconutString		String
