@@ -118,7 +118,7 @@ syn match   coconutEscapableStatement	/\\\@<!\(data\|async\|await\)\>/
 syn match   coconutEscapableConditional	/\\\@<!\(match\|case\)\>/
 
 syn match   coconutComment	"#.*$" contains=coconutTodo,@Spell
-syn keyword coconutTodo		FIXME NOTE NOTES TODO XXX contained
+syn keyword coconutTodo		BUG DEBUG ERROR FIXME NOTE NOTES OPTIMIZE REVIEW REVISIT TODO XXX contained
 
 " Triple-quoted strings can contain doctests.
 syn region  coconutString
@@ -203,15 +203,17 @@ if !exists("coconut_no_builtin_highlight")
   syn keyword coconutBuiltin	NotImplemented Ellipsis __debug__
   " built-in functions
   syn keyword coconutBuiltin	abs addpattern all any bin bool chr classmethod
-  syn keyword coconutBuiltin	compile complex consume count datamaker delattr
-  syn keyword coconutBuiltin	dict dir divmod dropwhile enumerate eval filter
-  syn keyword coconutBuiltin	float format frozenset getattr globals hasattr
-  syn keyword coconutBuiltin	hash help hex id input int isinstance issubclass
-  syn keyword coconutBuiltin	iter len list locals map max min next object oct
-  syn keyword coconutBuiltin	open ord parallel_map pow prepattern print
-  syn keyword coconutBuiltin	property range recursive repr reversed round set
-  syn keyword coconutBuiltin	setattr slice sorted staticmethod str sum super
-  syn keyword coconutBuiltin	takewhile tee tuple type vars zip __import__
+  syn keyword coconutBuiltin	compile complex concurrent_map consume count
+  syn keyword coconutBuiltin	datamaker delattr dict dir divmod dropwhile
+  syn keyword coconutBuiltin	enumerate eval filter float fmap format frozenset
+  syn keyword coconutBuiltin	getattr globals groupsof hasattr hash help hex
+  syn keyword coconutBuiltin	id input int isinstance issubclass iter len list
+  syn keyword coconutBuiltin	locals makedata map max min next object oct open
+  syn keyword coconutBuiltin	ord parallel_map pow prepattern print property
+  syn keyword coconutBuiltin	range recursive recursive_iterator reiterable
+  syn keyword coconutBuiltin	repr reversed round scan set setattr slice sorted
+  syn keyword coconutBuiltin	starmap staticmethod str sum super takewhile tee
+  syn keyword coconutBuiltin	tuple type vars zip __import__
   " Python 2.6 only
   syn keyword coconutBuiltin	basestring callable cmp execfile file
   syn keyword coconutBuiltin	long raw_input reduce reload unichr
